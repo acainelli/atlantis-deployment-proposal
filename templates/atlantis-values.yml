@@ -8,6 +8,15 @@ service:
 
 ingress:
   enabled: true
+  ingressClassName: traefik-ext
+  annotations:
+    traefik.ingress.kubernetes.io/middleware:  whitelisted-github-ips
+  path: /*
+  hosts:
+    - host: # TBD
+      paths: ["/"]
+      service: atlantis
+  tls: []
 
 resources:
   requests:
@@ -32,3 +41,8 @@ allowDraftPRs: false
 hidePrevPlanComments: true
 
 disableRepoLocking: false
+
+## Optionally, so UI wouldn't be exposed passwordless, even though will be accesible only through VPN
+#basicAuth:
+#  username: "atlantis"
+#  password: "atlantis"
