@@ -1,0 +1,34 @@
+github:
+ user: ""
+ token: ""
+ secret: ""
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+
+resources:
+  requests:
+   memory: 1Gi
+   cpu: 100m
+  limits:
+   memory: 1Gi
+   cpu: 100m
+
+replicaCount: 1
+
+repoConfig: |
+  repos:
+  - id: "/.*/"
+    apply_requirements:
+    - approved
+    allowed_overrides:
+    - apply_requirements
+
+allowDraftPRs: false
+
+hidePrevPlanComments: true
+
+disableRepoLocking: false
